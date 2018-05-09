@@ -7,15 +7,10 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $categories = Category::all();
-        
+
         return view('admin.categories.index', compact('categories'));
     }
 
@@ -40,7 +35,7 @@ class CategoryController extends Controller
         Category::create($request->all());
 
         return redirect()->route('category.index');
-    }    
+    }
 
     /**
      * Remove the specified resource from storage.
@@ -58,9 +53,9 @@ class CategoryController extends Controller
 
     public function questions(Category $category)
     {
-        return view('admin.categories.questions', [ 
-            'category' => $category,         
+        return view('admin.categories.questions', [
+            'category' => $category,
             'questions' => $category->question()->get()->paginate(5),
-        ]);        
+        ]);
     }
 }

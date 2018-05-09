@@ -1,7 +1,7 @@
-@extends('admin.layouts.app')
+@extends('layouts.app')
 @section('title', 'CategoryQuestions')
 @section('content')
-<h1>Вы просматриваете информацию о вопросах без ответа в теме {{$category->title}}</h1>
+<h1>Вопросы, требующие ответа: Тема {{$category->title}}</h1>
 <table class="table">
     <tr>
         <th>№п/п</th>                
@@ -14,7 +14,7 @@
     @foreach ($questions as $question)
     <tr>
         <td>{{ $loop->iteration }}</td>        
-        <td>{{ $question->created_at }}</td>
+        <td>{{ $question->date_created }}</td>
         <td>
             @if($question->answer == NULL)
                 Ожидает ответа
@@ -39,6 +39,11 @@
     @endforeach
 </table>
 <span>{{$questions->links()}}</span>
-<a class="admin" href="{{ route('category.index') }}">Назад к категориям</a>
-<a class="admin" href="{{ route('admin.home') }}">Вернуться к списку возможностей администратора</a>
+<button type="submit" class="btn btn-success">
+    <a style="color: white; text-decoration: none;" href="{{ route('category.index') }}">Назад к категориям</a>
+</button>
+
+<button type="submit" class="btn btn-success">
+    <a style="color: white; text-decoration: none;" href="{{ route('admin.home') }}">На главную</a>
+</button>
 @endsection

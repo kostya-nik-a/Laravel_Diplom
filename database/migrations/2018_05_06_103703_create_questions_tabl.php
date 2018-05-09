@@ -14,13 +14,13 @@ class CreateQuestionsTabl extends Migration
     public function up()
     {
         Schema::create('questions', function (Blueprint $table) {
-            $table->increments('question_id');
+            $table->increments('id');
             $table->text('question', 1500);
-            $table->text('answer', 1500)->nullable();
-            $table->integer('category_id');
             $table->string('author', 100);
             $table->string('email_author', 100);
+            $table->integer('category_id');
             $table->integer('status')->default(0);
+            $table->text('answer', 1500)->nullable();
             $table->timestamps();
         });
     }

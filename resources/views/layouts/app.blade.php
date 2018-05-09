@@ -8,8 +8,6 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -19,14 +17,18 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" href="/public/css/reset.css"> <!-- CSS reset -->
+    <link rel="stylesheet" href="/public/css/style.css"> <!-- Resource style -->
+    <script src="/public/js/modernizr.js"></script> <!-- Modernizr -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 </head>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -41,7 +43,6 @@
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
-                            <li><a class="nav-link" href="{{ route('login') }}">{{ __('Вход') }}</a></li>
                             <li><a class="nav-link" href="{{ route('register') }}">{{ __('Регистрация') }}</a></li>
                         @else
                             <li class="nav-item dropdown">
@@ -55,10 +56,6 @@
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('Logout') }}
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
                                 </div>
                             </li>
                         @endguest
@@ -66,10 +63,13 @@
                 </div>
             </div>
         </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
     </div>
+
+    <div class="admin_container">
+        @yield('content')
+
+        @yield('links')
+    </div>
+
 </body>
 </html>

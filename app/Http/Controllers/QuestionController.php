@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Question;
-use Illuminate\Http\Request;
 use App\Category;
+use Illuminate\Http\Request;
 
 class QuestionController extends Controller
 {
@@ -14,6 +15,12 @@ class QuestionController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
+
+    public function answers()
+    {
+        return $this->hasMany('App\Question');
+    }
+
     public function edit(Question $question, Request $request)
     {
         $categories = Category::all();
@@ -31,6 +38,23 @@ class QuestionController extends Controller
     {
         $question->update($request->all());
         return redirect()->route('category.index');          
+    }
+
+    public function update_answer(Request $request, Question $question)
+    {
+        $question->answer = $request['answer'];
+        $question->save();
+
+        return redirect()->route('admin.questions.edit', [
+            'question' => $question,
+        ]);
+    }
+
+    public function answer(Request $request, Question $question){
+        return view('admin.questions.answer', [
+            'question' => $question,
+            'answer' => $question->answers(),
+        ]);
     }
 
     /**

@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     protected $fillable = ['question',
-        'category_id',
         'author',
         'email_author',
+        'category_id',
         'status',
         'answer',
         'date_created',
@@ -19,5 +19,10 @@ class Question extends Model
     public function category()
     {
         return $this->belongsTo('App\Category');
+    }
+
+    public function answers()
+    {
+        return $this->hasMany('App\Question');
     }
 }

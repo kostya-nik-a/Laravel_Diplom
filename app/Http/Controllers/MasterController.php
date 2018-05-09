@@ -16,11 +16,11 @@ class MasterController extends Controller
         return view('welcome', compact('questions', 'categories'));
     }
 
-    public function takeFormQuestion()
+    public function takeFormQuestion ()
     {
         $categories = Category::all();
 
-        return view('form_question', compact('categories'));
+        return view('ask_question', compact('categories'));
     }
 
     public function store(Request $request)
