@@ -16,7 +16,7 @@ class MasterController extends Controller
         return view('welcome', compact('questions', 'categories'));
     }
 
-    public function takeFormQuestion ()
+    public function takeFormQuestion()
     {
         $categories = Category::all();
 
@@ -31,7 +31,7 @@ class MasterController extends Controller
             'category_id' => 'required|integer',
             'question' => 'required|string|max:1500',
         ]);
-        $new_question = Question::create($request->all());
+        Question::create($request->all());
 
         return redirect()->route('master');
     }
