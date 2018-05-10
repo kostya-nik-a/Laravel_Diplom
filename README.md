@@ -9,6 +9,9 @@
 По умолчанию для входа в интерфейс администратора создан логин admin и пароль admin
 
 Установка проекта:
-Клонировать в репозиторий https://github.com/kostya-nik-a/Laravel_Diplom.git
 Установить composer
-Запустить php artisan migrate 
+Установить через composer Laravel
+Клонировать проект https://github.com/kostya-nik-a/Laravel_Diplom.git
+Импортировать faq.sql
+Запустить php artisan migrate
+
