@@ -11,7 +11,9 @@
 Установка проекта:
 Установить composer
 Установить через composer Laravel
+Импортировать базу faq.sql
 Клонировать проект https://github.com/kostya-nik-a/Laravel_Diplom.git
-Импортировать faq.sql
+Выполнить настроки подключения к БД в файле .env
 Запустить php artisan migrate
+
 
